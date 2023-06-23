@@ -50,6 +50,7 @@ h1{
   font-size: 0.5rem;
 }
 
+
 /* Estilos para orientación vertical */
 @media (orientation: portrait) {
   .formulario{

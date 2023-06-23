@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import './App.css';
 import GhostBtn from './componentes/ghostBtn';
+import { useEffect } from 'react';
+import ToolTip from './componentes/ToolTip';
 
 function App() {
   const [resultado, setResultado] = useState(null);
   const [calificaciones, setCalificaciones] = useState({primer: '', segundo: ''});
+  const [botonesDeshabilitados, setBotonesDeshabilitados] = useState(true);
+  const [claseBotones, setClaseBotones] = useState("ghostBtnDisabled");
 
   function guardarDatos({target}){
     const {name, value} = target;
@@ -13,6 +17,17 @@ function App() {
       [name]: value
     });
   }
+
+  useEffect(()=> {
+    console.log(calificaciones)
+    if (calificaciones.primer == '' || calificaciones.segundo == ''){
+      setBotonesDeshabilitados(true);
+      setClaseBotones("ghostBtnDisabled");
+    }else{
+      setBotonesDeshabilitados(false);
+      setClaseBotones("ghostBtn");
+    }
+  }, [calificaciones]);
 
   function obtenerResultado(primerParcial, segundoParcial, tercerParcial){
     let calificacionAcumulada = 0;
@@ -49,9 +64,19 @@ function App() {
         <input name='segundo' type='text' placeholder='70' onChange={guardarDatos}/>
         <label htmlFor="">Elige la ponderación de la materia</label>
         <div className='contenedorBtns'>
-          <GhostBtn contenido="Ponderación A" onClick={ponderacionA}/>
-          <GhostBtn contenido="Ponderación B" onClick={ponderacionB}/>
-          <GhostBtn contenido="Ponderación C" onClick={ponderacionC}/>
+        {botonesDeshabilitados ? (
+            <>
+              <ToolTip text="Los botones están deshabilitados hasta que se rellenen ambos formularios del campo." children={<GhostBtn contenido="Ponderación A" clase={claseBotones} onClick={ponderacionA} enabled={botonesDeshabilitados}/>}/>
+              <ToolTip text="Los botones están deshabilitados hasta que se rellenen ambos formularios del campo." children={<GhostBtn contenido="Ponderación B" clase={claseBotones} onClick={ponderacionB} enabled={botonesDeshabilitados}/>}/>
+              <ToolTip text="Los botones están deshabilitados hasta que se rellenen ambos formularios del campo." children={<GhostBtn contenido="Ponderación C" clase={claseBotones} onClick={ponderacionC} enabled={botonesDeshabilitados}/>}/>
+            </>
+          ) : (
+            <>
+              <GhostBtn contenido="Ponderación A" clase={claseBotones} onClick={ponderacionA} enabled={botonesDeshabilitados} />
+              <GhostBtn contenido="Ponderación B" clase={claseBotones} onClick={ponderacionB} enabled={botonesDeshabilitados} />
+              <GhostBtn contenido="Ponderación C" clase={claseBotones} onClick={ponderacionC} enabled={botonesDeshabilitados} />
+            </>
+          )}
         </div>
         <p className='small'>Ponderación A: 1er parcial 20%, 2do parcial 35%, 3er parcial 45%</p>
         <p className='small'>Ponderación B: 1er parcial 15%, 2do parcial 35%, 3er parcial 50%</p>

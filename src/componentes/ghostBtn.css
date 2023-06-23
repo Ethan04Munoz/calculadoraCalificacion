@@ -7,11 +7,20 @@
     margin-top: 0.5rem;
     padding: 0.5rem;
     border-radius: 1px;
+    width: 100%;
 }
 
 .ghostBtn:hover{
     background-position: 0 0%;
     border-radius: 0% 0.6rem 0.6rem 0%;
+}
+
+.ghostBtnDisabled{
+    background: #1e1e1ee1;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 1px;
+    width: 100%;
 }
 
 /* Estilos para orientación vertical */
