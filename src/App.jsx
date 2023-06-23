@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css';
 import GhostBtn from './componentes/ghostBtn';
 
@@ -16,31 +14,27 @@ function App() {
     });
   }
 
+  function obtenerResultado(primerParcial, segundoParcial, tercerParcial){
+    let calificacionAcumulada = 0;
+    calificacionAcumulada = calificacionAcumulada + ((calificaciones.primer)*primerParcial) + ((calificaciones.segundo)*segundoParcial);
+    let calificacionFaltante = 69.6 - calificacionAcumulada;
+    calificacionFaltante = Math.ceil(calificacionFaltante / tercerParcial);
+    return calificacionFaltante;
+  }
+
   function ponderacionA(event){
     event.preventDefault();
-    let calificacionAcumulada = 0;
-    calificacionAcumulada = calificacionAcumulada + ((calificaciones.primer)*0.20) + ((calificaciones.segundo)*0.35);
-    let calificacionFaltante = 69.6 - calificacionAcumulada;
-    calificacionFaltante = calificacionFaltante / 0.45;
-    setResultado(Math.ceil(calificacionFaltante));
+    setResultado(obtenerResultado(0.20, 0.35, 0.45));
   }
 
   function ponderacionB(event){
     event.preventDefault();
-    let calificacionAcumulada = 0;
-    calificacionAcumulada = calificacionAcumulada + ((calificaciones.primer)*0.15) + ((calificaciones.segundo)*0.35);
-    let calificacionFaltante = 69.6 - calificacionAcumulada;
-    calificacionFaltante = calificacionFaltante / 0.50;
-    setResultado(Math.ceil(calificacionFaltante));
+    setResultado(obtenerResultado(0.15, 0.35, 0.50));
   }
 
   function ponderacionC(event){
     event.preventDefault();
-    let calificacionAcumulada = 0;
-    calificacionAcumulada = calificacionAcumulada + ((calificaciones.primer)*0.33) + ((calificaciones.segundo)*0.33);
-    let calificacionFaltante = 69.6 - calificacionAcumulada;
-    calificacionFaltante = calificacionFaltante / 0.34;
-    setResultado(Math.ceil(calificacionFaltante));
+    setResultado(obtenerResultado(0.33, 0.33, 0.34));
   }
 
   return (
@@ -48,6 +42,7 @@ function App() {
       <div className='formulario'>
         <h1>Calculadora de calificación mínima.</h1>
         <p>Bienvenido/a. Esta es una calculadora para que evalues cuál es la calificación mínima que necesitas en el tercer parcial. Se toman en cuenta las ponderaciones del CETI.</p>
+        <p> </p>
         <label htmlFor="">Calificación del primer parcial</label>
         <input name='primer' type='text' placeholder='70' onChange={guardarDatos}/>
         <label htmlFor="">Calificación del segundo parcial</label>

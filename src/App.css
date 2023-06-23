@@ -1,8 +1,8 @@
 .formulario{
-  height: 50vh;
-  margin-top: 25vh;
-  width: 50vw;
-  margin-left: 25vw;
+  height: auto;
+  margin-top: 20vh;
+  width: 40vw;
+  margin-left: 30vw;
   background: #1e1e1ed0;
   padding: 1rem;
   border-radius: 1rem;
@@ -16,6 +16,7 @@
 .formulario input{
   background: #1e1e1ed0;
   border: 1px solid #646464;
+  padding: 0.2rem;
 }
 
 body{
@@ -27,7 +28,10 @@ body{
 *{
   color: #ffffff;
   font-family: Lato, 'Segoe UI', Verdana;
-  font-size: 18px;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.5rem;
 }
 
 h1{
@@ -44,4 +48,23 @@ h1{
 .small{
   margin-top: 1px;
   font-size: 0.5rem;
+}
+
+/* Estilos para orientación vertical */
+@media (orientation: portrait) {
+  .formulario{
+    height: auto;
+    margin-top: 5vh;
+    width: 90vw;
+    margin-left: 2vw;
+  }
+  *{
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 1322px){
+  *{
+    font-size: 18px;
+  }
 }
