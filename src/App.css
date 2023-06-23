@@ -55,8 +55,8 @@ h1{
   .formulario{
     height: auto;
     margin-top: 5vh;
-    width: 90vw;
-    margin-left: 2vw;
+    width: 100%;
+    margin-left: 0;
   }
   *{
     font-size: 2vw;
