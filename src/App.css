@@ -59,12 +59,12 @@ h1{
     margin-left: 2vw;
   }
   *{
-    font-size: 3vw;
+    font-size: 2vw;
   }
 }
 
 @media (max-width: 1322px){
   *{
-    font-size: 18px;
+    font-size: 16px;
   }
 }
